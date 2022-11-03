@@ -1,0 +1,3 @@
+adminer3100
+adminer3200
+adminer3260

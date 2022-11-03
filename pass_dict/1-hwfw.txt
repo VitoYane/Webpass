@@ -1,0 +1,4 @@
+telnetpwd
+ftppwd
+Admin@123
+eudemon

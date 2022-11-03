@@ -1,0 +1,3 @@
+adminer
+admin
+h3c

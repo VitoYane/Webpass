@@ -1,0 +1,6 @@
+weblogic
+system
+portaladmin
+guest
+admin123
+weblogic123

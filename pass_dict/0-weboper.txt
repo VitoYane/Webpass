@@ -1,0 +1,8 @@
+weboper
+webaudit
+conadmin
+admin
+shell
+nsfocus
+reporter
+auditor
