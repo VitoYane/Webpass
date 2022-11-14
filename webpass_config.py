@@ -1,15 +1,16 @@
+from asyncio import Queue as aQueue
 from queue import Queue
 
-browser = None
-context = None
-all_info = {}
-
-productQu = Queue()
+pQu = aQueue()
+ocr = None
+task_list = []
+all_status = [0]*6
+identifyQu = Queue()
 unknownQu = Queue()
-productInt = 0
+timeoutQu = Queue()
+identifyInt = 0
 
-task_list_QuA = Queue()
-task_list_QuB = Queue()
+taskQu = Queue()
 taskcountInt = 0
 
 suc_login_Qu = Queue()
@@ -49,12 +50,12 @@ class cfg:
 
         '奇安信网神全流量威胁发现系统':{
             'keywords': ['奇安信网神', '全流量威胁发现系统'],
-            'user_info': ['/html/body/div/div[2]/div/div/div[1]/div/div/div[2]/form/div[1]/input[1]', 'pass_dict/0-admin.txt'],
-            'pass_info': ['/html/body/div/div[2]/div/div/div[1]/div/div/div[2]/form/div[1]/input[2]', 'pass_dict/1-qaxty.txt'],
-            'button': ['/html/body/div/div[2]/div/div/div[1]/div/div/div[2]/form/div[2]/input'],
-            'CAPTCHA': ['/html/body/div/div[2]/div/div/div[1]/div/div/div[2]/form/div[1]/input[3]', '/html/body/div/div[2]/div/div/div[1]/div/div/div[2]/form/div[1]/div/img'],
+            'user_info': ['[name=\"username\"]', 'pass_dict/0-admin.txt'],
+            'pass_info': ['[name=\"password\"]', 'pass_dict/1-qaxty.txt'],
+            'button': ['[class=\"submit-btn\"]'],
+            'CAPTCHA': ['[name=\"authcode\"]', '[class=\"refresh-code\"]'],
             'suc': [],
-            'fail': [],
+            'fail': ['username', 'password'],
         	'logic': ['or'],
 		},
         '奇安信网神新一代安全感知系统':{
@@ -69,12 +70,12 @@ class cfg:
 		},
         '奇安信网神流量传感器':{
             'keywords': ['奇安信网神', '流量传感器'],
-            'user_info': ['/html/body/div/div[2]/div/div/div[1]/div/div/div[2]/form/div[1]/input[1]', 'pass_dict/0-admin.txt'],
-            'pass_info': ['/html/body/div/div[2]/div/div/div[1]/div/div/div[2]/form/div[1]/input[2]', 'pass_dict/1-qaxty.txt'],
-            'button': ['/html/body/div/div[2]/div/div/div[1]/div/div/div[2]/form/div[2]/input'],
-            'CAPTCHA': ['/html/body/div/div[2]/div/div/div[1]/div/div/div[2]/form/div[1]/input[3]', '/html/body/div/div[2]/div/div/div[1]/div/div/div[2]/form/div[1]/div/img'],
+            'user_info': ['[name=\"username\"]', 'pass_dict/0-admin.txt'],
+            'pass_info': ['[name=\"password\"]', 'pass_dict/1-qaxty.txt'],
+            'button': ['[class=\"submit-btn\"]'],
+            'CAPTCHA': ['[name=\"authcode\"]', '[class=\"refresh-code\"]'],
             'suc': [],
-            'fail': [],
+            'fail': ['username', 'password'],
         	'logic': ['or'],
 		},
         '奇安信天眼分析平台':{
@@ -571,7 +572,7 @@ class cfg:
             'keywords': ['明御安全网关', 'webui/css/reset.css', '/webui/js'],
             'user_info': ['[placeholder=\"用户名\"]', 'pass_dict/0-admin.txt'],
             'pass_info': ['[placeholder=\"密　码\"]', 'pass_dict/1-sapling.txt'],
-            'button': ['button:has-text(\"登录\")'],
+            'button': ['button:[id=\"登录\"]'],        # //*[@id="myButton"]
             'CAPTCHA': ["input[name=\"vldcode\"]","#myvld"],
             'suc': ['首页','授权提醒'],
             'fail': ['用户名'],
